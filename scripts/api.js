@@ -18,14 +18,14 @@ let arry = [0];
 // }
 let cat = document.querySelector(".cat");
 console.log(cat);
-const request = (nodeID) => {
-    fetch(nodeID)
+const request = async (nodeID) => {
+    await fetch(nodeID)
     .then(res => res.json())
     .then(data => {cat.innerHTML += data[0].name})
 }
 let data = request(api);
 
-
+// 이 부분은 나중에 변경
 const $node = document.createElement('div');
 $node.setAttribute("class", "dog");
 $node.innerText= "dogo";
@@ -39,3 +39,5 @@ cat.appendChild($node);
 // for (let j = 0; j < arry.length; j++) {
 //     document.getElementsByClassName("cat").innerHTML += arry[j].name
 // }
+
+export default request
