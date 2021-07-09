@@ -4,7 +4,7 @@
 
 const request = async (nodeID) => {
     let node = await fetch(nodeID);
-    return await node.json;
+    return await node.json();
 
 }
 

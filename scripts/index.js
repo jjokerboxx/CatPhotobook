@@ -4,8 +4,9 @@ import request from "./api.js";
 
 const api = "https://zl3m4qq0l9.execute-api.ap-northeast-2.amazonaws.com/dev/";
 
-let asd = await request(api)
-console.log(asd);
+let node = await request(api)
+
+
 
 // access to DOM elem
 let cat = document.querySelector(".cat");
