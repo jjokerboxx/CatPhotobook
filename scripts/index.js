@@ -3,7 +3,7 @@
 import request from "./api.js";
 import Nodes from "./Nodes.js";
 
-const api = "https://zl3m4qq0l9.execute-api.ap-northeast-2.amazonaws.com/dev/";
+const api = "https://zl3m4qq0l9.execute-api.ap-northeast-2.amazonaws.com/dev";
 
 let node = await request(api)
 console.log(node);
@@ -22,4 +22,4 @@ cat.appendChild($node);
 const $node1 = document.querySelector(".dog");
 
 
-let Breadcrumb = new Nodes($node1, node);
+let Breadcrumb = new Nodes($node1, node, api);
