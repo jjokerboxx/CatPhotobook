@@ -14,13 +14,21 @@ function App($app){
 
 
     const breadcrumPage = new Breadcrumb({$app, initialState: this.state.depth});
-    const nodePage = new Nodes({$app, initialState: this.state.nodes});
+    const nodePage = new Nodes({$app, initialState: this.state.nodes, onClick: async (e) => { const newResponse = await request(e.target.id);
+        console.log(newResponse);
+        //setState를 통해 페이지를 초기화 + 렌더링
+        this.setState({
+            ...this.state,
+            isRoot : true,
+            nodes:newResponse
+        });
+    }});
 
     this.setState = (nextState) => {
         this.state = nextState;
         breadcrumPage.setState(this.state.depth);
         nodePage.setState(this.state.nodes);
-
+            // isRoot : this.state.isRoot,
 
         console.log(this.state);
     }
@@ -36,20 +44,12 @@ function App($app){
     
     init();
 
-
-    
-
-    const gates = document.querySelectorAll(".Gate");
-    const handleClick = async (event) => {
-        console.log(event.target.id);
-        const newResponse = await request(event.target.id);
-        console.log(newResponse);
-        //setState를 통해 페이지를 초기화 + 렌더링
-        nodePage.setState(newResponse);
-    }
-    //어떻게하면 모든 Gate 클래스 얘들에게 이벤트 리스너를 부착할 수 있을까?
-    gates.forEach(node => node.addEventListener("click", handleClick));
-
+    // this.handleClick = async (event) => {
+    //     const newResponse = await request(event.target.id);
+    //     console.log(newResponse);
+    //     //setState를 통해 페이지를 초기화 + 렌더링
+    //     this.setState(newResponse);
+    // }
     
         
 }
