@@ -9,6 +9,10 @@
     background-color: #eee;
     flex-direction: column;
   }
+
+  .title {
+    text-align: center;
+  }
   
   .app {
     border: 1px solid #ccc;

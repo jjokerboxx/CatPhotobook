@@ -1,25 +1,28 @@
 "use strict";
 
 import request from "./api.js";
+import Breadcrumb from "./Breadcrumb.js";
 import Nodes from "./Nodes.js";
-
-const api = "https://zl3m4qq0l9.execute-api.ap-northeast-2.amazonaws.com/dev";
-
-let node = await request(api)
-console.log(node);
+import App from "./App.js";
 
 
+// access to DOM elem + manipulate it with Event Listener
+const $app = document.querySelector(".App");
+new App($app);
 
-// access to DOM elem
-let cat = document.querySelector(".cat");
-// create new DOM elem
-const $node = document.createElement('div');
-$node.setAttribute("class", "dog");
-$node.innerText= "dogo";
-// render(or attach) created DOM elem
-cat.appendChild($node);
-
-const $node1 = document.querySelector(".dog");
+// let breadcrumPage = new Breadcrumb($bread, response);
+// let nodePage = new Nodes($node, response);
 
 
-let Breadcrumb = new Nodes($node1, node, api);
+//위치를 App 안으로 옮기기!
+const gates = document.querySelectorAll(".Gate");
+const handleClick = async (event) => {
+    console.log(event.target.id);
+    const newResponse = await request(event.target.id);
+    console.log(newResponse);
+    //setState를 통해 페이지를 초기화 + 렌더링
+    nodePage.setState(newResponse);
+}
+//어떻게하면 모든 Gate 클래스 얘들에게 이벤트 리스너를 부착할 수 있을까?
+gates.forEach(node => node.addEventListener("click", handleClick));
+//그래!! map은 array를 리턴하지 작동하는 로직을 하려면 그냥 for loop가 정답이야!!
