@@ -6,7 +6,7 @@ function Breadcrumb({$app, initialState}){
     //state는 Array이다.
     this.state = initialState;
     this.$target = document.createElement('nav');
-    this.$target.className = "Breadcrum";
+    this.$target.className = "Breadcrumb";
     $app.appendChild(this.$target);
 
     this.setState = (state) => {

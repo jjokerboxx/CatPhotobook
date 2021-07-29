@@ -1,6 +1,5 @@
 "use strict";
 
-import request from "./api.js";
 import App from "./App.js";
 
 
