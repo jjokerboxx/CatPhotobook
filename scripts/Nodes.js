@@ -12,14 +12,11 @@ function Nodes({$app, initialState, onMetClick, onGateClick, onBackClick}){
         this.state = state.nodes;
         this.isRoot = state.isRoot;
         this.render();
-
-        
     }
 
     this.render = () => {
         //state에는 node라는 Array-attribute가 있음
         //나였으면 for문으로 했을 것을 map으로 매우 깔끔한 코드로 작성됨...!
-        this.isRoot = initialState.isRoot;
         this.$target.innerHTML = "";
         if (this.isRoot) {
             console.log("IS ROOT!!");          
@@ -28,7 +25,7 @@ function Nodes({$app, initialState, onMetClick, onGateClick, onBackClick}){
             this.$target.innerHTML = `<div><img class="Prev" src="../assets/prev.png" width="180"></div>`;
         }
         const arry = this.state.map(node => `<div>
-                                                ${node.type == "DIRECTORY" ? `<div><img class="Gate" id="${node.id}" src="../assets/directory.png"></div>` : `<div><img class="Met" id="${node.id}" src="../assets/file.png"></div>`}
+                                                ${node.type == "DIRECTORY" ? `<div><img class="Gate" name="${node.name}" id="${node.id}" src="../assets/directory.png"></div>` : `<div><img class="Met" name="${node.name}" id="${node.filePath}" src="../assets/file.png"></div>`}
                                                 ${node.name}
                                             </div>`);
         this.$target.innerHTML += arry.join("");
